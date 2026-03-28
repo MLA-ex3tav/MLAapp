@@ -205,7 +205,12 @@
                 if (error) throw error;
                 btn.innerHTML = '¡Publicado!';
                 setTimeout(() => { closeReviewModal(); fetchReviews(); document.getElementById('review-form').reset(); btn.disabled = false; btn.innerHTML = 'Publicar reseña'; }, 1500);
-            } catch (err) { alert('Error al enviar'); btn.disabled = false; btn.innerHTML = 'Enviar'; }
+            } catch (err) {
+                console.error(err);
+                alert('Error al enviar: ' + (err.message || 'Error desconocido'));
+                btn.disabled = false; 
+                btn.innerHTML = 'Publicar reseña';
+            }
         };
 
         fetchReviews();
